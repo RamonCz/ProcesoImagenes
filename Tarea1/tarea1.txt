@@ -1,0 +1,25 @@
+TAREA 1
+
+(1)                                                                 
+Gray = (R*1 + G*1 + B*1) / 3 (división entera)
+Gray = (Red * 0.3 + Green * 0.59 + Blue * 0.11)
+Gray = (Red * 0.2126 + Green * 0.7152 + Blue * 0.0722)
+Gray = (Red * 0.299 + Green * 0.587 + Blue * 0.114)
+Gray = ( Max(Red, Green, Blue) + Min(Red, Green, Blue) ) / 2
+Gray = Max(Red, Green, Blue)
+Gray = Min(Red, Green, Blue)
+
+(2)
+Filtro Rojo (R,0,0)
+Filtro Verde (0,G,0)
+Filtro Azul (0,0,B)
+
+(3)
+Filtro mosaico
+
+(4) 
+Alto contraste
+Inverso
+
+(5)
+Brillo (sumar o restar una constante a cada tripleta RGB, o sea, a cada pixel.
