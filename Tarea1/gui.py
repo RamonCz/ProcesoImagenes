@@ -1,75 +1,91 @@
+from ast import Try
 from lib2to3.pgen2.token import NAME
-from app import openfn, gris_aux
+from app import gris_aux, openfn
 from tkinter import *
-import tkinter
+import tkinter as tk
+from filtros import color,contraste,inverso,brillo, mosaico
 from PIL import ImageTk, Image
-from filtros import color, gray1,contraste,inverso,brillo, mosaico
-import os
-
 root = Tk()
+
 root.geometry("1000x800+300+150")
 root.resizable(width=True, height=True)
 
-def filtros(namef):
-    options_list = ["Gray", "Red", "Green", "Blue", "Mosaico","Alto contraste", "Inverso", "Brillo"]
-    value_inside = tkinter.StringVar(root)
-    value_inside.set("Select an Option")
-    question_menu = tkinter.OptionMenu(root, value_inside, *options_list)
-    question_menu.pack()
-    print(value_inside.get())
-    submit_button = tkinter.Button(root, text='Apply', command=lambda :filtro(value_inside.get(),namef))
-    submit_button.pack()
-    
+string_var = tk.StringVar()
+def open_img():
+    namef = openfn()
+    img = Image.open(namef)
+    img = img.resize((500, 400), Image.ANTIALIAS)
+    img = ImageTk.PhotoImage(img)
+    panel = Label(root, image=img)
+    panel.image = img
+    panel.pack()
+    string_var.set(namef)
 
-def gris(name):
-    options_list = ["(R*1 + G*1 + B*1) / 3 (división entera)",
+def scaling(option):
+    scale = tk.Toplevel(root)
+    scale.geometry("200x50") 
+    v = IntVar() 
+    if option == 0:
+        scale = Scale( scale, variable = v, from_ = 1, to = 50, orient = HORIZONTAL,length=800,sliderlength=10,resolution=2)  
+    else:
+        scale = Scale( scale, variable = v, from_ = 1, to = 100, orient = HORIZONTAL,length=800,sliderlength=10,resolution=2)  
+    scale.pack(anchor=CENTER) 
+    btn = Button(scale, text="Value", command=lambda : escalas(scale,option,v))  
+    btn.pack()  
+    
+    label = Label(scale)  
+    label.pack()  
+    
+def escalas(scale,option,v):
+    try:
+        scale.destroy()
+        scale.destroy()
+    except:
+        pass
+    if option == 0  :
+        mosaico(string_var.get(),v.get())
+    if option == 1 :
+        brillo(string_var.get(),v.get())
+
+menubar = tk.Menu(root)
+root.config(menu=menubar)
+
+filemenu = tk.Menu(menubar)
+filemenu.add_command(label="Open", command=open_img)
+filemenu.add_command(label="Save")
+filemenu.add_command(label="Exit", command=root.quit)
+
+menubar.add_cascade(label="File", menu=filemenu)
+
+filtermenu = tk.Menu(menubar)
+
+graymenu = tk.Menu(menubar)
+options_list = ["(R*1 + G*1 + B*1) / 3 (división entera)",
                     "(Red * 0.3 + Green * 0.59 + Blue * 0.11)",
                     "(Red * 0.2126 + Green * 0.7152 + Blue * 0.0722)",
                     "(Red * 0.299 + Green * 0.587 + Blue * 0.114)",
                     "( Max(Red, Green, Blue) + Min(Red, Green, Blue) ) / 2",
                     "Max(Red, Green, Blue)",
                     "Min(Red, Green, Blue)"]
-    value_inside = tkinter.StringVar(root)
-    value_inside.set("Select an Option")
-    question_menu = tkinter.OptionMenu(root, value_inside, *options_list)
-    question_menu.pack()
-    print(value_inside.get())
-    submit_button = tkinter.Button(root, text='Apply', command=lambda :gris_aux(value_inside.get(),name))
-    submit_button.pack()
-
-def filtro(f,name):
-    #dic = {"Gray":gray1(1,name), 
-    if "Gray" == f:
-        gris(name)
-    if "Red" == f:
-        color('red',name)
-    if "Green" == f:
-        color('green',name)
-    if  "Blue" == f:
-        color('blue',name)
-    if  "Mosaico" ==f :
-        mosaico(name,10)
-    if "Alto contraste"== f:
-        contraste(name)
-    if "Inverso" == f:
-        inverso(name)
-    if "Brillo" == f:
-        brillo(name,40)
+graymenu.add_command(label= options_list[0],command=lambda :gris_aux(0,string_var.get()))
+graymenu.add_command(label= options_list[1],command=lambda :gris_aux(1,string_var.get()))
+graymenu.add_command(label= options_list[2],command=lambda :gris_aux(2,string_var.get()))
+graymenu.add_command(label= options_list[3],command=lambda :gris_aux(3,string_var.get()))
+graymenu.add_command(label= options_list[4],command=lambda :gris_aux(4,string_var.get()))
+graymenu.add_command(label= options_list[5],command=lambda :gris_aux(5,string_var.get()))
+graymenu.add_command(label= options_list[6],command=lambda :gris_aux(6,string_var.get()))
 
 
-def open_img():
-    namef = openfn()
-    img = Image.open(namef)
-    img = img.resize((300, 300), Image.ANTIALIAS)
-    img = ImageTk.PhotoImage(img)
-    panel = Label(root, image=img)
-    panel.image = img
-    panel.pack()
-    filtros(namef)
+filtermenu.add_cascade(label="Gray", menu=graymenu)
+filtermenu.add_command(label= "Red", command=lambda :color('red',string_var.get()))
+filtermenu.add_command(label= "Green",command=lambda :color('green',string_var.get()))
+filtermenu.add_command(label= "Blue",command=lambda :color('blue',string_var.get()))
+filtermenu.add_command(label= "Mosaico",command=lambda :scaling(0))
+filtermenu.add_command(label="Alto contraste",command=lambda :contraste(string_var.get()))
+filtermenu.add_command(label= "Inverso",command= lambda :inverso(string_var.get()))
+filtermenu.add_command(label= "Brillo",command= lambda: scaling(1))#  lambda :brillo(string_var.get(),40))
 
-bnt = Button(root, text='Open image', command=open_img).pack()
-
-
+menubar.add_cascade(label="Filter", menu=filtermenu)
 
 
 
