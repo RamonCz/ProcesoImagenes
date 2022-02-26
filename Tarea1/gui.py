@@ -1,12 +1,11 @@
-from ast import Try
 from lib2to3.pgen2.token import NAME
-from app import gris_aux, openfn
 from tkinter import *
 import tkinter as tk
+from app import gris_aux, openfn
 from filtros import color,contraste,inverso,brillo, mosaico
 from PIL import ImageTk, Image
-root = Tk()
 
+root = Tk()
 root.geometry("1000x800+300+150")
 root.resizable(width=True, height=True)
 

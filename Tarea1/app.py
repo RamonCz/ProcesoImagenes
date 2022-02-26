@@ -1,9 +1,6 @@
 from tkinter import filedialog
 from filtros import gray1
 
-#from gui import gris
-
-
 def openfn():
     filename = filedialog.askopenfilename(title='open')
     return filename
