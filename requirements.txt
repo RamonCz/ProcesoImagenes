@@ -1,34 +1,25 @@
-# This file may be used to create an environment using:
-# $ conda create --name <env> --file <this file>
-# platform: win-64
-altgraph=0.17.2=pyhd8ed1ab_0
-ca-certificates=2021.10.8=h5b45459_0
-certifi=2021.10.8=py38haa244fe_1
-freetype=2.10.4=hd328e21_0
-future=0.18.2=py38haa244fe_4
-jpeg=9b=vc14h4d7706e_1
-libpng=1.6.37=h2a8f88b_0
-libtiff=4.1.0=h56a325e_1
-lz4-c=1.9.2=hf4a77e7_3
-macholib=1.14=pyh9f0ad1d_1
-olefile=0.46=py_0
-openssl=1.1.1l=h8ffe710_0
-pefile=2021.9.3=pyhd8ed1ab_0
-pillow=8.0.0=py38hca74424_0
-pip=21.2.2=py38haa95532_0
-pycryptodome=3.14.1=py38h294d835_0
-pyinstaller=4.8=py38h8cc25b3_0
-python=3.8.12=h6244533_0
-python_abi=3.8=2_cp38
-pywin32=303=py38h294d835_0
-pywin32-ctypes=0.2.0=py38haa244fe_1004
-setuptools=58.0.4=py38haa95532_0
-sqlite=3.37.2=h2bbff1b_0
-tk=8.6.10=he774522_0
-vc=14.2=h21ff451_1
-vs2015_runtime=14.27.29016=h5e58377_2
-wheel=0.37.1=pyhd3eb1b0_0
-wincertstore=0.2=py38haa95532_2
-xz=5.2.5=h62dcd97_0
-zlib=1.2.11=vc14h1cdd9ab_1
-zstd=1.4.4=ha9fde0e_3
+altgraph @ file:///home/conda/feedstock_root/build_artifacts/altgraph_1632761154050/work
+certifi==2021.10.8
+cycler @ file:///home/conda/feedstock_root/build_artifacts/cycler_1635519461629/work
+fonttools @ file:///D:/bld/fonttools_1643722825909/work
+future @ file:///D:/bld/future_1635819659513/work
+kiwisolver @ file:///D:/bld/kiwisolver_1635836839743/work
+macholib @ file:///home/conda/feedstock_root/build_artifacts/macholib_1595268426755/work
+matplotlib @ file:///D:/bld/matplotlib-suite_1639359275746/work
+munkres==1.1.4
+numpy @ file:///D:/bld/numpy_1643959091469/work
+olefile==0.46
+packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1637239678211/work
+pefile @ file:///home/conda/feedstock_root/build_artifacts/pefile_1630688703091/work
+Pillow @ file:///C:/ci/pillow_1602770972588/work
+pycryptodome @ file:///D:/bld/pycryptodome_1644028956458/work
+pyinstaller @ file:///C:/ci/pyinstaller_1645412385847/work
+pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_1642753572664/work
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
+pywin32==303
+pywin32-ctypes @ file:///D:/bld/pywin32-ctypes_1635826703191/work
+sip==4.19.13
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+tornado @ file:///D:/bld/tornado_1635819758615/work
+unicodedata2 @ file:///D:/bld/unicodedata2_1640031186081/work
+wincertstore==0.2

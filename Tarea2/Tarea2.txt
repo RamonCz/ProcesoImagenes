@@ -1,0 +1,15 @@
+
+TAREA 2
+
+Blur (difumina una imagen - la hace borrosa)
+Motion Blur (efecto de foto movida)
+Find edges (encuentran bordes)
+	* en vertical
+	* en horizontal
+	* a 45 grados
+	* en todas las direcciones
+Sharpen (hace que la imagen sea más precisa)
+Emboss (encuentra bordes y los pone en relieve (3D))
+Filtro promedio (mean)
+Filtro mediano
+Poner una mica RGB sobre las imagen
