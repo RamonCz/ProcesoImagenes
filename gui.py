@@ -1,10 +1,12 @@
-from lib2to3.pgen2.token import NAME
-from tkinter import *
 import tkinter as tk
-from Tarea1.app import gris_aux, openfn
-from Tarea1.filtros import color,contraste,inverso,brillo, mosaico
-from Tarea2.tarea2 import blur,motion_blur,find_edges,sharpen,emboss,mean,median
-from PIL import ImageTk, Image
+from tkinter import Button, IntVar, Label, Scale,CENTER,HORIZONTAL, Tk
+
+from PIL import Image, ImageTk
+
+from Tareas.app import gris_aux, openfn
+from Tareas.tarea1 import brillo, color, contraste, inverso, mosaico
+from Tareas.tarea2 import (blur, emboss, find_edges, mean, median, motion_blur,
+                           sharpen)
 
 root = Tk()
 root.geometry("1000x800+300+150")

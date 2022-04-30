@@ -1,6 +1,5 @@
-from tkinter import *
-from PIL import Image
-
+from PIL import Image,ImageOps
+from numpy import array, append,expand_dims,empty
 
 def gray1(number, nombre):
     '''
@@ -46,7 +45,7 @@ def gray1(number, nombre):
         
         #input_image.save("grayscale", format="png")
         input_image.show()
-
+        return input_image
 def color(color, nombre):
     '''
     Convierte una imagen al color indicado
@@ -63,29 +62,54 @@ def color(color, nombre):
         
         input_image.show()
 
-def mosaico(nombre,number):
-    if(nombre != None):
+
+def mosaico(nombre,number, letter = False):
+    if(nombre == str):
         input_image = Image.open(nombre)
-        pixel_map = input_image.load()
-        w, h = input_image.size
-        average = _mosaico_aux(input_image, 0, 0, number,number, 0,0,flag = 0)
-        for i in range(0,w,number):
-            for j in range(0,h,number):
-                width  = i +number
-                height = j + number
-                if (width  < w and height < h):
-                    average = _mosaico_aux(input_image, i, j, width ,height, average,number)
-                elif(width  >= w and height >= h):
-                    average = _mosaico_aux(input_image, i, j, w ,h, average,number)
-                elif(width  >= w):
-                    average = _mosaico_aux(input_image, i, j, w ,height, average,number)
-                elif(height >= h):
-                    average = _mosaico_aux(input_image, i, j, width ,h, average,number)
+    else:
+        input_image = nombre
+    w, h = input_image.size
+    
+    average = _mosaico_aux(input_image, 0, 0, number,number, 0,0, flag = 0)
+    
+    arr = array([],dtype=object)
+    prom = []
+    flag = False
+    for i in range(0,w,number):
+        if letter and flag :
+            if len(arr.shape) == 1:
+                aux = empty(len(prom), dtype=object)
+                aux[:] = prom
+                arr = append(arr, aux)
+                arr = expand_dims(arr, axis=0)
+                prom = []
+            else:
+                aux = empty((1,len(prom)), dtype=object)
+                aux[:] =  [prom]
+                arr = append(arr, aux, axis=0)
+                prom = []
+        for j in range(0,h,number):
+            flag = True
+            width  = i +number
+            height = j + number
+            if (width  < w and height < h):
+                average = _mosaico_aux(input_image, i, j, width ,height, average,number)
+                prom.append(average)
+            elif(width  >= w and height >= h):
+                average = _mosaico_aux(input_image, i, j, w ,h, average,number)
+                prom.append(average)
+            elif(width  >= w):
+                average = _mosaico_aux(input_image, i, j, w ,height, average,number)
+                prom.append(average)
+            elif(height >= h):
+                average = _mosaico_aux(input_image, i, j, width ,h, average,number)
+                prom.append(average)
 
-        
-        input_image.show()
+    
+    #input_image.show()
+    return arr
 
-def _mosaico_aux(input_image, x, y, w, h, average,n,flag = 1):
+def _mosaico_aux(input_image, x, y, w, h, average,n,flag = 1  ):
     pixel_map = input_image.load()
     w2, h2 = input_image.size
     main = []
@@ -103,6 +127,7 @@ def _mosaico_aux(input_image, x, y, w, h, average,n,flag = 1):
         red = sum(r) /len(r)
         green = sum(g) /len(g)
         blue = sum(b) /len(b)
+        #add the color to array
         return (int(red), int(green), int(blue))
     return (0,0,0)
 

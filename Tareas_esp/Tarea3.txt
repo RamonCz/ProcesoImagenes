@@ -1,0 +1,93 @@
+Tarea 3
+
+1. foto con una letra con colores.
+2. foto con una letra pero en tono de gris
+3. foto en grises con letras en blanco y negro {MNH#QUAD0Y2$%+. }
+4. Combinar efecto 1 con efecto 3
+5. Combinar efecto 2 con efecto 3
+6. Usar las letras de un texto con los colores de la región
+7. Usar el tipo de letras de cartas, para crear la imagen
+8. Usar el tipo de letras dominó, para crear la imagen (puntos blancos con fondo negro)
+9. Usar el tipo de letras dominó, para crear la imagen (puntos negros con fondo blanco)
+
+notas: 
+
+los archivos generados por los puntos 7, 8 y 9, son archivos de texto, que se ponen en un editor con el tip de letra que queramos.
+
+las cartas de la baraja son:
+  ABCDEFGHIJKLM - corazones: A 23456789 10 JQK
+  NOPQRSTUVWXYZ - tréboles
+  abcdefghijklm - diamantes
+  nopqrstuvwxyz - picas
+
+ Case NumColor of
+        00..20          : Letra := 'M';    //mas oscuro
+        21..40          : Letra := 'L';
+        41..60          : Letra := 'K';
+        61..80          : Letra := 'J';
+        81..100         : Letra := 'I';
+        101..120        : Letra := 'H';
+        121..140        : Letra := 'G';
+        141..160        : Letra := 'F';
+        161..180        : Letra := 'E';
+        181..200        : Letra := 'D';
+        201..220        : Letra := 'C';
+        221..240        : Letra := 'B';
+        241..255        : Letra := 'A';   //mas claro
+  end{Case tonos de gris}
+
+dominós:
+
+fichas negras con fondo blanco:
+0) - ficha blanca izq y der
+1! - "1" izq y der
+2@ 
+3# 
+4$
+5% 
+6& 
+
+
+ if IzqDer = 'I' then
+  Case NumColor of
+       0..36     : Letra := '6';
+       37..72    : Letra := '5';
+       73..108   : Letra := '4';
+       109..144  : Letra := '3';
+       145..180  : Letra := '2';
+       181..216  : Letra := '1';
+       217..255  : Letra := '0';
+  end; {Case}
+  if IzqDer = 'D' then
+  Case NumColor of
+       0..36     : Letra := '^';
+       37..72    : Letra := '%';
+       73..108   : Letra := '$';
+       109..144  : Letra := '#';
+       145..180  : Letra := '@';
+       181..216  : Letra := '!';
+       217..255  : Letra := ')';
+  end {Case}
+
+dominó puntos blancos fondo negro: 
+
+if IzqDer = 'I' then
+  Case NumColor of
+       0..36     : Letra := '0';
+       37..72    : Letra := '1';
+       73..108   : Letra := '2';
+       109..144  : Letra := '3';
+       145..180  : Letra := '4';
+       181..216  : Letra := '5';
+       217..255  : Letra := '6';
+  end; {Case}
+  if IzqDer = 'D' then
+  Case NumColor of
+       0..36     : Letra := ')';
+       37..72    : Letra := '!';
+       73..108   : Letra := '@';
+       109..144  : Letra := '#';
+       145..180  : Letra := '$';
+       181..216  : Letra := '%';
+       217..255  : Letra := '^';
+  end {Case}

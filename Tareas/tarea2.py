@@ -1,5 +1,3 @@
-from telnetlib import SEND_URL
-from tkinter import *
 from PIL import Image
 import numpy as np
 
